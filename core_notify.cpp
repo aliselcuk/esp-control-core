@@ -22,18 +22,22 @@ static String coreUrlEncode(const String& s) {
   return out;
 }
 
-bool coreSendPushover(const String& title, const String& message, int priority) {
+bool coreNotifyPushover(const String& title, const String& message, int priority) {
   if (!PUSH_ENABLED) return false;
 
   String form =
-      "token="   + coreUrlEncode(PUSH_TOKEN) +
-      "&user="   + coreUrlEncode(PUSH_USER) +
-      "&device=" + coreUrlEncode(PUSH_DEVICE) +
-      "&title="  + coreUrlEncode(title) +
-      "&message="+ coreUrlEncode(message) +
-      "&priority=" + String(priority);
+      "token="    + coreUrlEncode(PUSH_TOKEN) +
+      "&user="    + coreUrlEncode(PUSH_USER) +
+      "&device="  + coreUrlEncode(PUSH_DEVICE) +
+      "&title="   + coreUrlEncode(title) +
+      "&message=" + coreUrlEncode(message) +
+      "&priority="+ String(priority);
 
   String response;
   int code = coreHttpPostForm(PUSH_API_URL, form, response, 10000);
   return code > 0 && code < 300;
+}
+
+bool coreNotifyUser(const String& title, const String& message, int priority) {
+  return coreNotifyPushover(title, message, priority);
 }

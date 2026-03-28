@@ -1,4 +1,5 @@
 #pragma once
 #include <Arduino.h>
 
-bool coreSendPushover(const String& title, const String& message, int priority = 0);
+bool coreNotifyUser(const String& title, const String& message, int priority = 0);
+bool coreNotifyPushover(const String& title, const String& message, int priority = 0);

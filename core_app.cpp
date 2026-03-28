@@ -51,16 +51,13 @@ void coreInit() {
   gLocalIp = coreWifiLocalIp();
 
   if (ok) {
-    gPublicIp  = coreGetPublicIp();
-    gLocalUrl  = coreBuildLocalUrl(gLocalIp, SERVER_PORT);
+    gPublicIp = coreGetPublicIp();
+    gLocalUrl = coreBuildLocalUrl(gLocalIp, SERVER_PORT);
     gRemoteUrl = coreBuildRemoteUrl(gPublicIp, ROUTER_INCOMING_PORT);
 
-    String msg = "Device: " + String(DEVICE_NAME) +
-                 "\nPlatform: " + String(DEVICE_PLATFORM) +
-                 "\nLocal: " + gLocalUrl +
-                 "\nRemote: " + gRemoteUrl;
+    String msg = "Device: " + String(DEVICE_NAME) + "\nPlatform: " + String(DEVICE_PLATFORM) + "\nLocal: " + gLocalUrl + "\nRemote: " + gRemoteUrl;
 
-    coreSendPushover("ESP Online", msg);
+    coreNotifyUser("ESP Online", msg);
   }
 
   server.on("/", handleRoot);
