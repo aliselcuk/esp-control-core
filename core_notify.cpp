@@ -38,6 +38,14 @@ bool coreNotifyPushover(const String& title, const String& message, int priority
   return code > 0 && code < 300;
 }
 
-bool coreNotifyUser(const String& title, const String& message, int priority) {
+bool coreNotify(const String& message, const String& prefix, int priority) {
+  String title;
+
+  if (prefix.length() > 0) {
+    title = prefix + " - " + String(PROJECT_NAME);
+  } else {
+    title = String(PROJECT_NAME) + " Online";
+  }
+
   return coreNotifyPushover(title, message, priority);
 }

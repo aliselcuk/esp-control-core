@@ -57,7 +57,7 @@ void coreInit() {
 
     String msg = "Device: " + String(DEVICE_NAME) + "\nPlatform: " + String(DEVICE_PLATFORM) + "\nLocal: " + gLocalUrl + "\nRemote: " + gRemoteUrl;
 
-    coreNotifyUser("ESP Online", msg);
+    coreNotify("ESP Online", msg);
   }
 
   server.on("/", handleRoot);

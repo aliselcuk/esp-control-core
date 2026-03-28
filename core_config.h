@@ -8,6 +8,8 @@
 
 #include "secrets.h"
 
+static const char* PROJECT_NAME = "ESP Control Core";
+
 // ============================================================
 // NETWORK CONFIG
 // ============================================================
